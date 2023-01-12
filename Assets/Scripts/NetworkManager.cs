@@ -16,6 +16,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public List<DefaultRoom> defaultRooms;
     public GameObject roomUI;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     private void Start()
     {
         ConnectToServer();
@@ -62,11 +67,48 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("Joined a room.");
         base.OnJoinedRoom();
+
+        int playerCount = PlayerCount();
+        PhotonNetwork.LocalPlayer.NickName = "Player " + playerCount;
+        Debug.LogFormat("<color=cyan>Joined a room with {0} players</color>", playerCount);
+
+        //Initialize local player
+        GameManager.Instance.playerController.InitializePlayer(playerCount);
+
+        //Initialize network player
+        FindObjectOfType<NetworkPlayerSpawner>().SpawnNetworkPlayer(GameManager.Instance.playerController.player);
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         Debug.Log("A new player has joined the room.");
         base.OnPlayerEnteredRoom(newPlayer);
+
+        int playerCount = PlayerCount();
+        Debug.LogFormat("<color=cyan>Player {0} entered the room with {1} players</color>",
+            newPlayer.NickName, playerCount);
+
+        //TEMPORARY CODE. PLEASE DELETE THIS!!!!!!
+        //IF TWO PLAYERS JOIN THE ROOM, START THE GAME
+        if(playerCount == 2)
+        {
+            Invoke(nameof(TemporaryCodeStart), 2f);
+        }
+    }
+
+    private void TemporaryCodeStart()
+    {
+        Debug.LogFormat("<color=red> *** STARTING THE GAME FOR DEBUG PURPOSE ***</color>");
+        Debug.LogFormat("<color=red> *** DELETE THIS CODE LATER ***</color>");
+        GameManager.Instance.StartButtonPressed();
+    }
+
+    /// <summary>
+    /// Returns the number of players in the current room
+    /// </summary>
+    /// <returns></returns>
+    public int PlayerCount()
+    {
+        return PhotonNetwork.PlayerList.Length;
     }
 }

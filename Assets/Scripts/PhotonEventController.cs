@@ -8,10 +8,10 @@ using UnityEngine;
 
 public class PhotonEventController : MonoBehaviour
 {
-    public byte PipeRoomButtonPressedEventCode = 1;
-
     private static PhotonEventController _instance;
     public static PhotonEventController Instance { get { return _instance; } }
+
+    private GameManager gameManager;
 
     private void Awake()
     {
@@ -29,7 +29,7 @@ public class PhotonEventController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager = GameManager.Instance;
     }
 
 
@@ -54,7 +54,8 @@ public class PhotonEventController : MonoBehaviour
     /// </summary>
     public void RaiseCustomEvent(byte _eventCode, object[] _content)
     {
-        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All };
+        Debug.LogFormat("<color=green>RaiseCustomEvent {0} | {1}</color>", _eventCode, _content);
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All, CachingOption = EventCaching.AddToRoomCache };
         PhotonNetwork.RaiseEvent(_eventCode, _content, raiseEventOptions, SendOptions.SendReliable);
     }
 
@@ -65,7 +66,15 @@ public class PhotonEventController : MonoBehaviour
     public void OnCustomEvent(EventData photonEvent)
     {
         byte eventCode = photonEvent.Code;
-        if (eventCode == PipeRoomButtonPressedEventCode)
+        if (eventCode == StaticData.StartGameEventCode)
+            gameManager.OnStartGameEvent((object[])photonEvent.CustomData);
+        else if (eventCode == StaticData.OnPlayerCollisionEnterEventCode)
+            gameManager.OnCollisionEnterWithOtherPlayer((object[])photonEvent.CustomData);
+        else if (eventCode == StaticData.OnPlayerCollisionExitEventCode)
+            gameManager.OnCollisionExitWithOtherPlayer((object[])photonEvent.CustomData);
+        else if (eventCode == StaticData.PlayerKilledEventCode)
+            gameManager.OnPlayerKilled((object[])photonEvent.CustomData);
+        else if (eventCode == StaticData.PipeRoomButtonPressedEventCode)
         {
             object[] content = (object[])photonEvent.CustomData;
             if (FindObjectOfType<ButtonTrigger>() != null)

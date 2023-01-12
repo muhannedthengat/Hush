@@ -30,7 +30,7 @@ public class ButtonTrigger : MonoBehaviour
         //buttonMesh.material = buttonOnMat;
         //pipeRoomController.isButtonPresseed = true;
 
-        PhotonEventController.Instance.RaiseCustomEvent(PhotonEventController.Instance.PipeRoomButtonPressedEventCode,
+        PhotonEventController.Instance.RaiseCustomEvent(StaticData.PipeRoomButtonPressedEventCode,
             new object[] { true });
 
     }
@@ -40,7 +40,7 @@ public class ButtonTrigger : MonoBehaviour
         //buttonMesh.material = buttonOffMat;
         //pipeRoomController.isButtonPresseed = false;
 
-        PhotonEventController.Instance.RaiseCustomEvent(PhotonEventController.Instance.PipeRoomButtonPressedEventCode,
+        PhotonEventController.Instance.RaiseCustomEvent(StaticData.PipeRoomButtonPressedEventCode,
             new object[] { false });
     }
 

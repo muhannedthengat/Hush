@@ -61,7 +61,7 @@ public class GestureController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(InputDevices.GetDeviceAtXRNode(XRNode.LeftHand) != null)
+        if(InputDevices.GetDeviceAtXRNode(XRNode.RightHand) != null)
         {
             //Toggle Game Menu based on user input
             bool isYPressed, tempState = false;
@@ -89,5 +89,20 @@ public class GestureController : MonoBehaviour
 
             }
         }
+
+        if (InputDevices.GetDeviceAtXRNode(XRNode.LeftHand) != null)
+        {
+            bool leftTriggerValue;
+            if (InputDevices.GetDeviceAtXRNode(XRNode.LeftHand).TryGetFeatureValue(CommonUsages.triggerButton, out leftTriggerValue) && leftTriggerValue)
+            {
+                GameManager.Instance.OnKillButtonPressed?.Invoke();
+            }
+            else
+            {
+                GameManager.Instance.OnKillButtonReleased?.Invoke();
+            }
+        }
+
+        
     }
 }

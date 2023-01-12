@@ -25,6 +25,8 @@ public class NetworkPlayer : MonoBehaviour
     private Transform rightHandRig;
     private Transform leftHandRig;
 
+    public HushPlayer player;
+
     private GestureController gestureController;
 
     private void Awake()
@@ -44,7 +46,9 @@ public class NetworkPlayer : MonoBehaviour
             {
                 item.enabled = false;
             }
+            GameManager.Instance.playerController.myNetworkPlayer = this;
         }
+        gameObject.name = photonView.Owner.NickName;
 
         List<NetworkPlayer> networkPlayers = FindObjectsOfType<NetworkPlayer>().ToList();
         Material _avatarMat = avatarMaterials[networkPlayers.Count - 1];
@@ -144,5 +148,25 @@ public class NetworkPlayer : MonoBehaviour
     {
         target.position = rigTransform.position;
         target.rotation = rigTransform.rotation; 
+    }
+
+    public void OnCollisionEnterWithOtherPlayer(string _otherPlayerName)
+    {
+        if(photonView != null && photonView.IsMine)
+        {
+            //Raise event for collision enter
+            PhotonEventController.Instance.RaiseCustomEvent(StaticData.OnPlayerCollisionEnterEventCode,
+                new object[] { player.name, _otherPlayerName });
+        }
+    }
+
+    public void OnCollisionExitWithOtherPlayer(string _otherPlayerName)
+    {
+        if (photonView != null && photonView.IsMine)
+        {
+            //Raise event for collision exit
+            PhotonEventController.Instance.RaiseCustomEvent(StaticData.OnPlayerCollisionExitEventCode,
+                new object[] { player.name, _otherPlayerName });
+        }
     }
 }
