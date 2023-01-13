@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Lobby.unity
     guid: 55cc578a4b9a2e847aa01a576b403183
   - enabled: 1
+    path: Assets/Scenes/Game Scene.unity
+    guid: f3288a05d32123b43b75b2482f979659
+  - enabled: 1
     path: Assets/Scenes/Pipe Room.unity
     guid: 32f003d8b4b0c0e4cb962e8dac4ea162
   - enabled: 0
