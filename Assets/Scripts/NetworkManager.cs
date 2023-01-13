@@ -52,7 +52,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         DefaultRoom roomSettings = defaultRooms[defaultRoomIndex];
         //Load scene
-        PhotonNetwork.LoadLevel(roomSettings.sceneIndex);
+        //PhotonNetwork.LoadLevel(roomSettings.sceneIndex);
 
         //Creates a room
         RoomOptions roomOptions = new RoomOptions();
