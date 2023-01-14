@@ -8,10 +8,13 @@ public class PlayerController : MonoBehaviour
     public HushPlayer player;
     public NetworkPlayer myNetworkPlayer;
 
+    public GameObject youAreKillerIndicator;
+    public GameObject youAreWorkerIndicator;
+
     public GameObject killPlayerIndicator;
+    public GameObject youDiedIndicator;
     public TextMeshProUGUI victimNameText;
 
-    public GameObject youDiedIndicator;
 
     public bool isCollidingWithOtherPlayer;
     public string otherPlayerName;
@@ -89,6 +92,7 @@ public class PlayerController : MonoBehaviour
             AssignPlayerRole(HushPlayerRoles.Worker);
             AssignPlayerState(HushPlayerStates.Working);
         }
+        StartCoroutine(DisplayRoleToPlayer(player.role));
     }
 
     public void AssignPlayerRole(HushPlayerRoles _role)
@@ -117,6 +121,26 @@ public class PlayerController : MonoBehaviour
     private void OnKillButtonReleased()
     {
         isPressingKillButton = false;
+    }
+
+    private IEnumerator DisplayRoleToPlayer(HushPlayerRoles _role)
+    {
+        switch(_role)
+        {
+            case HushPlayerRoles.Ghost:
+                youAreKillerIndicator.SetActive(true);
+                break;
+            case HushPlayerRoles.Worker:
+                youAreWorkerIndicator.SetActive(true);
+                break;
+            default:
+                youAreWorkerIndicator.SetActive(true);
+                break;
+        }
+
+        yield return new WaitForSeconds(3f);
+        youAreKillerIndicator.SetActive(false);
+        youAreWorkerIndicator.SetActive(false);
     }
 }
 

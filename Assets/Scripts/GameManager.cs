@@ -79,8 +79,6 @@ public class GameManager : MonoBehaviour
 
         //Assign local player's role as per the received index
         playerController.AssignPlayerRoleAndState(_indexForGhost);
-
-        //TODO: SHOW UI HUD TO PLAYERS AS PER THEIR ROLES
     }
 
     public void OnCollisionEnterWithOtherPlayer(object[] _content)
