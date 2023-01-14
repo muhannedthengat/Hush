@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 {
     private PhotonView photonView;
 
+    public List<Transform> playerSpawnPoints;
+
     [Header("SCRIPT REFERENCES")]
     [HideInInspector] public PlayerController playerController;
     [HideInInspector] public NetworkManager networkManager;

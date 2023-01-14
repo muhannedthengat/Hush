@@ -78,6 +78,10 @@ public class PlayerController : MonoBehaviour
         player.name = "Player " + _playerId;
         player.role = HushPlayerRoles.None;
         player.state = HushPlayerStates.Spawned;
+
+        //Assign spawn position and rotation
+        transform.position = GameManager.Instance.playerSpawnPoints[_playerId-1].position;
+        transform.rotation = GameManager.Instance.playerSpawnPoints[_playerId-1].rotation;
     }
 
     public void AssignPlayerRoleAndState(int _ghostIndex)
