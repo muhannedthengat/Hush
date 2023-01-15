@@ -13,5 +13,8 @@ public static class StaticData
     public static byte PlayerKilledEventCode = 4;
 
     public static byte PipeRoomButtonPressedEventCode = 5;
+
+
+    public static byte EmergencyMeetingEventCode = 6;
     #endregion
 }

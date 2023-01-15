@@ -83,5 +83,7 @@ public class PhotonEventController : MonoBehaviour
                 FindObjectOfType<ButtonTrigger>().OnButtonPressEvent(_isButtonPresseed);
             }
         }
+        else if (eventCode == StaticData.EmergencyMeetingEventCode)
+            gameManager.OnEmergencyMeetingEvent((object[])photonEvent.CustomData);
     }
 }
