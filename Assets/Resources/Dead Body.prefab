@@ -303,6 +303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2698358517294727534}
   - component: {fileID: 2698358517294727535}
+  - component: {fileID: 271009668753626608}
   m_Layer: 0
   m_Name: Dead Body
   m_TagString: Untagged
@@ -349,3 +350,18 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &271009668753626608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2698358517294727533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7258364c0febc45b5f2ecd209ad055, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  avatarRenderers:
+  - {fileID: 2698358515970469359}
+  - {fileID: 2698358517250642855}

@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public HushPlayer player;
     public NetworkPlayer myNetworkPlayer;
 
+    public GameObject connectingIndicator;
     public GameObject youAreKillerIndicator;
     public GameObject youAreWorkerIndicator;
 
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        connectingIndicator.SetActive(true);
         GameManager.Instance.OnKillButtonPressed.AddListener(OnKillButtonPressed);
         GameManager.Instance.OnKillButtonReleased.AddListener(OnKillButtonReleased);
     }
@@ -78,10 +80,9 @@ public class PlayerController : MonoBehaviour
         player.name = "Player " + _playerId;
         player.role = HushPlayerRoles.None;
         player.state = HushPlayerStates.Spawned;
+        PlacePlayerInMeetingRoom();
 
-        //Assign spawn position and rotation
-        transform.position = GameManager.Instance.playerSpawnPoints[_playerId-1].position;
-        transform.rotation = GameManager.Instance.playerSpawnPoints[_playerId-1].rotation;
+        connectingIndicator.SetActive(false);
     }
 
     public void AssignPlayerRoleAndState(int _ghostIndex)
@@ -115,6 +116,13 @@ public class PlayerController : MonoBehaviour
 
         //TODO: SHOW UI FOR DEATH
         youDiedIndicator.SetActive(true);
+    }
+
+    public void PlacePlayerInMeetingRoom()
+    {
+        //Assign spawn position and rotation
+        transform.position = GameManager.Instance.playerSpawnPoints[player.playerId - 1].position;
+        transform.rotation = GameManager.Instance.playerSpawnPoints[player.playerId - 1].rotation;
     }
 
     private void OnKillButtonPressed()

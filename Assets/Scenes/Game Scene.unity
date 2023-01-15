@@ -167,6 +167,11 @@ Transform:
   m_Father: {fileID: 1062348117}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &20592574 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 6044551228451827438, guid: 57cd2b93069b1e94fa45d111179fa7af, type: 3}
+  m_PrefabInstance: {fileID: 6044551229684792951}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &43869906
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,13 +506,13 @@ GameObject:
   - component: {fileID: 370071499}
   - component: {fileID: 370071498}
   - component: {fileID: 370071497}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &370071497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,7 +563,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 20592574}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -602,7 +607,7 @@ GameObject:
   - component: {fileID: 440147979}
   - component: {fileID: 440147981}
   - component: {fileID: 440147980}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Timer Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -733,6 +738,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 676587149, guid: 19d58aaceb33dee4882b21078aad8469, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1797204509}
+    - target: {fileID: 7432732886703731825, guid: 19d58aaceb33dee4882b21078aad8469, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432732886703731825, guid: 19d58aaceb33dee4882b21078aad8469, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 31.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432732886703731825, guid: 19d58aaceb33dee4882b21078aad8469, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.595
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432732886703731830, guid: 19d58aaceb33dee4882b21078aad8469, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 20592574}
     - target: {fileID: 7432732887371867614, guid: 19d58aaceb33dee4882b21078aad8469, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -934,7 +959,7 @@ GameObject:
   - component: {fileID: 994542582}
   - component: {fileID: 994542584}
   - component: {fileID: 994542583}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Bg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1148,7 +1173,7 @@ GameObject:
   - component: {fileID: 1630272448}
   - component: {fileID: 1630272450}
   - component: {fileID: 1630272449}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1285,6 +1310,17 @@ MonoBehaviour:
   - {fileID: 2137230299}
   - {fileID: 337894040}
   - {fileID: 345971146}
+  avatarMaterials:
+  - {fileID: 2100000, guid: 1f0e1448d42ad1d458149d6fa0f8232b, type: 2}
+  - {fileID: 2100000, guid: 01777cdaa36a01d4a8c21df9bd5bf771, type: 2}
+  - {fileID: 2100000, guid: 4c9e2c661bd4ddf4dafd8cc5aa40a8b6, type: 2}
+  - {fileID: 2100000, guid: e495461e427346340857723d3a6a3151, type: 2}
+  - {fileID: 2100000, guid: a8170f49e020b1d469b68233fe0d1b1a, type: 2}
+  - {fileID: 2100000, guid: b151135826f347c44a112b5b906d4b95, type: 2}
+  - {fileID: 2100000, guid: 8e7ce811f3697ad4d956060d52007d3c, type: 2}
+  - {fileID: 2100000, guid: 21ad3f97ea9ec9f4abf4fa1d3484864d, type: 2}
+  - {fileID: 2100000, guid: 459be9cc412b5b14e81798f1107b0506, type: 2}
+  - {fileID: 2100000, guid: ebd0e6d214f676747bb61cd3bd694227, type: 2}
   playerController: {fileID: 0}
   networkManager: {fileID: 0}
   OnKillButtonPressed:
@@ -1604,6 +1640,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 294859513, guid: 57cd2b93069b1e94fa45d111179fa7af, type: 3}
       propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 541534039, guid: 57cd2b93069b1e94fa45d111179fa7af, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1275210123, guid: 57cd2b93069b1e94fa45d111179fa7af, type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6044551228192544747, guid: 57cd2b93069b1e94fa45d111179fa7af, type: 3}

@@ -6,6 +6,8 @@ using Photon.Pun;
 using UnityEngine.XR.Interaction.Toolkit;
 using Unity.XR.CoreUtils;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System;
 
 public class NetworkPlayer : MonoBehaviour
 {
@@ -48,10 +50,13 @@ public class NetworkPlayer : MonoBehaviour
             }
             GameManager.Instance.playerController.myNetworkPlayer = this;
         }
+
+        //Assign name to network player
         gameObject.name = photonView.Owner.NickName;
 
-        List<NetworkPlayer> networkPlayers = FindObjectsOfType<NetworkPlayer>().ToList();
-        Material _avatarMat = avatarMaterials[networkPlayers.Count - 1];
+        //Assign material to network player
+        int playerIndex = GameManager.Instance.GetPlayerIndex(gameObject.name);
+        Material _avatarMat = GameManager.Instance.avatarMaterials[playerIndex - 1];
         foreach(Renderer _rend in avatarRenderers)
         {
             _rend.material = _avatarMat;

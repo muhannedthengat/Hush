@@ -88,14 +88,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Debug.LogFormat("<color=cyan>Player {0} entered the room with {1} players</color>",
             newPlayer.NickName, playerCount);
 
-        //TEMPORARY CODE. PLEASE DELETE THIS!!!!!!
-        //IF TWO PLAYERS JOIN THE ROOM, START THE GAME
-        if(playerCount == 2)
-        {
-            Invoke(nameof(TemporaryCodeStart), 2f);
-        }
     }
 
+    //TEMPORARY CODE. PLEASE DELETE THIS!!!!!!
     private void TemporaryCodeStart()
     {
         Debug.LogFormat("<color=red> *** STARTING THE GAME FOR DEBUG PURPOSE ***</color>");
